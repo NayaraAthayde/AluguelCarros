@@ -63,7 +63,7 @@ namespace AluguelCarros.Testes.Dominio_Testes
         [ExpectedException(typeof(DominioException))]
         public void Carro_nao_tem_valor_valido()
         {
-            _carro.Valor = -1500;
+            _carro.ValorDiario = -1500;
             _carro.Validar();
         }
     }

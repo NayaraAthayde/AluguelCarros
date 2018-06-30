@@ -47,11 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuração\AluguelConfiguracao.cs" />
+    <Compile Include="Configuração\CarroConfiguracao.cs" />
+    <Compile Include="Configuração\ClienteConfiguracao.cs" />
+    <Compile Include="Contexto\AluguelCarrosContexto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\AluguelRepositorio.cs" />
+    <Compile Include="Repositorios\CarroRepositorio.cs" />
+    <Compile Include="Repositorios\ClienteRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AluguelCarros.Dominio\AluguelCarros.Dominio.csproj">
+      <Project>{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}</Project>
+      <Name>AluguelCarros.Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

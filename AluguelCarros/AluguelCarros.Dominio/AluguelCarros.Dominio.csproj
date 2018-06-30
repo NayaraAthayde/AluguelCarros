@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contratos\IAluguelRepositorio.cs" />
+    <Compile Include="Contratos\IClienteRepositorio.cs" />
+    <Compile Include="Contratos\ICarroRepositorio.cs" />
+    <Compile Include="Contratos\IRepositorio.cs" />
+    <Compile Include="Entidades\Aluguel.cs" />
     <Compile Include="Entidades\Carro.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Endereco.cs" />

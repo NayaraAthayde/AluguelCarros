@@ -56,8 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ConstrutorObjeto.cs" />
+    <Compile Include="Base\InializadorBanco.cs" />
+    <Compile Include="Dominio Testes\AluguelTestes.cs" />
     <Compile Include="Dominio Testes\CarroTestes.cs" />
     <Compile Include="Dominio Testes\ClienteTestes.cs" />
+    <Compile Include="Infra Testes\CarroRepositorioTestes.cs" />
+    <Compile Include="Infra Testes\ClienteRepositorioTestes.cs" />
+    <Compile Include="Infra Testes\AluguelRepositorioTestes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +73,10 @@
     <ProjectReference Include="..\AluguelCarros.Dominio\AluguelCarros.Dominio.csproj">
       <Project>{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}</Project>
       <Name>AluguelCarros.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AluguelCarros.Infra.Dados\AluguelCarros.Infra.Dados.csproj">
+      <Project>{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26}</Project>
+      <Name>AluguelCarros.Infra.Dados</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

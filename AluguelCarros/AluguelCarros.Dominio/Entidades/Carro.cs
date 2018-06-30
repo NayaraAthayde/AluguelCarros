@@ -13,7 +13,7 @@ namespace AluguelCarros.Dominio.Entidades
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Cor { get; set; }
-        public double Valor { get; set; }
+        public double ValorDiario { get; set; }
 
         public void Validar()
         {
@@ -23,7 +23,7 @@ namespace AluguelCarros.Dominio.Entidades
                 throw new DominioException("Modelo não pode estar em branco");
             if (String.IsNullOrEmpty(Cor))
                 throw new DominioException("Cor não pode estar em branco");
-            if (Valor < 0)
+            if (ValorDiario < 0)
                 throw new DominioException("Valor não pode ser negativo");
         }
     }

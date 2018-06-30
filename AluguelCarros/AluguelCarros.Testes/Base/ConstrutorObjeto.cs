@@ -37,8 +37,17 @@ namespace AluguelCarros.Testes.Base
                 Marca = "Honda",
                 Modelo = "Civic 2018",
                 Cor = "Preto",
-                Valor = 1500
+                ValorDiario = 1500
             };
+        }
+        public static Aluguel CriarAluguel()
+        {
+            var carro = CriarCarro();
+            var cliente = CriarCliente();
+            var dias = 2;
+            var aluguel = new Aluguel(cliente, carro, dias);
+            aluguel.Id = 1;
+            return aluguel;
         }
     }
 }
