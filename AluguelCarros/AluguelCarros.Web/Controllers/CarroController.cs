@@ -82,9 +82,15 @@ namespace AluguelCarros.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Marca,Modelo,Cor,ValorDiario")] Carro carro)
         {
+            var car = _repositorio.BuscarPorId((int)carro.Id);
+            car.Marca = carro.Marca;
+            car.Modelo = carro.Modelo;
+            car.Cor = carro.Cor;
+            car.ValorDiario = carro.ValorDiario;
+
             if (ModelState.IsValid)
             {
-                _repositorio.Editar(carro);
+                _repositorio.Editar(car);
                 return RedirectToAction("Index");
             }
             return View(carro);

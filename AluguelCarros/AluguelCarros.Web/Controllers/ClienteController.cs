@@ -76,9 +76,21 @@ namespace AluguelCarros.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,PrimeiroNome,Sobrenome,Endereco,Telefone")] Cliente cliente)
         {
+            var client = _repositorio.BuscarPorId((int)cliente.Id);
+            client.PrimeiroNome = cliente.PrimeiroNome;
+            client.Sobrenome = cliente.Sobrenome;
+            client.Telefone = cliente.Telefone;
+            client.Endereco.Bairro = cliente.Endereco.Bairro;
+            client.Endereco.Cep = cliente.Endereco.Cep;
+            client.Endereco.Complemento = cliente.Endereco.Complemento;
+            client.Endereco.Localidade = cliente.Endereco.Localidade;
+            client.Endereco.Logradouro = cliente.Endereco.Logradouro;
+            client.Endereco.Numero = cliente.Endereco.Numero;
+            client.Endereco.Uf = cliente.Endereco.Uf;
+
             if (ModelState.IsValid)
             {
-                _repositorio.Editar(cliente);
+                _repositorio.Editar(client);
                 return RedirectToAction("Index");
             }
             return View(cliente);
