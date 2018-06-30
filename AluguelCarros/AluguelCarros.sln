@@ -3,9 +3,46 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{C5491BC8-AE23-4B83-A009-DC5A93A513F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio", "{C9D3B533-7886-493C-A43A-1EA5F1188657}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infraestrutura", "3 - Infraestrutura", "{90DC080E-F583-4F2F-B613-3B33AC24814D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{C05BE67B-E195-43E2-9570-AB9B43A2743D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluguelCarros.Dominio", "AluguelCarros.Dominio\AluguelCarros.Dominio.csproj", "{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluguelCarros.Infra.Dados", "AluguelCarros.Infra.Dados\AluguelCarros.Infra.Dados.csproj", "{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluguelCarros.Testes", "AluguelCarros.Testes\AluguelCarros.Testes.csproj", "{6B86039A-DA63-4EFF-91BA-B614D93E8A3E}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F5C7EE7-F5D6-4B78-8C38-7C613E333962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B86039A-DA63-4EFF-91BA-B614D93E8A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B86039A-DA63-4EFF-91BA-B614D93E8A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B86039A-DA63-4EFF-91BA-B614D93E8A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B86039A-DA63-4EFF-91BA-B614D93E8A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F5C7EE7-F5D6-4B78-8C38-7C613E333962} = {C9D3B533-7886-493C-A43A-1EA5F1188657}
+		{AD6ECE88-00B7-4B80-9F70-47AFEAA81F26} = {90DC080E-F583-4F2F-B613-3B33AC24814D}
+		{6B86039A-DA63-4EFF-91BA-B614D93E8A3E} = {C05BE67B-E195-43E2-9570-AB9B43A2743D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {134BD660-CEEA-4258-8E9D-EB033A1C4614}
