@@ -54,7 +54,18 @@ namespace AluguelCarros.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorio.Adicionar(aluguel);
+                using (var dbTransact = _contexto.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _repositorio.Adicionar(aluguel);
+                        dbTransact.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        dbTransact.Rollback();
+                    }
+                }                
                 return RedirectToAction("Index");
             }
 
@@ -85,7 +96,18 @@ namespace AluguelCarros.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorio.Editar(aluguel);
+                using (var dbTransact = _contexto.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _repositorio.Editar(aluguel);
+                        dbTransact.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        dbTransact.Rollback();
+                    }
+                }                
                 return RedirectToAction("Index");
             }
             return View(aluguel);
@@ -111,8 +133,19 @@ namespace AluguelCarros.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Aluguel aluguel = _repositorio.BuscarPorId(id);
-            _repositorio.Deletar(aluguel);
+            using (var dbTransact = _contexto.Database.BeginTransaction())
+            {
+                try
+                {
+                    Aluguel aluguel = _repositorio.BuscarPorId(id);
+                    _repositorio.Deletar(aluguel);
+                    dbTransact.Commit();
+                }
+                catch (Exception)
+                {
+                    dbTransact.Rollback();
+                }
+            }
             return RedirectToAction("Index");
         }
     }

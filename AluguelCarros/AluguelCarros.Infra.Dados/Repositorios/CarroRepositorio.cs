@@ -20,9 +20,21 @@ namespace AluguelCarros.Infra.Dados.Repositorios
         }
         public void Adicionar(Carro carro)
         {
-            _contexto.Carros.Add(carro);
+            using (var dbTransact = _contexto.Database.BeginTransaction())
+            {
+                try
+                {
+                    _contexto.Carros.Add(carro);
 
-            _contexto.SaveChanges();
+                    _contexto.SaveChanges();
+
+                    dbTransact.Commit();
+                }
+                catch (Exception)
+                {
+                    dbTransact.Rollback();
+                }
+            }
         }
 
         public Carro BuscarPorId(int id)
@@ -37,23 +49,47 @@ namespace AluguelCarros.Infra.Dados.Repositorios
 
         public void Deletar(Carro carro)
         {
-            DbEntityEntry dbEntityEntry = _contexto.Entry(carro);
-            if (dbEntityEntry.State == EntityState.Detached)
+            using (var dbTransact = _contexto.Database.BeginTransaction())
             {
-                _contexto.Carros.Attach(carro);
-            }
-            _contexto.Carros.Remove(carro);
-            _contexto.SaveChanges();
-        }
+                try
+                {
+                    DbEntityEntry dbEntityEntry = _contexto.Entry(carro);
+                    if (dbEntityEntry.State == EntityState.Detached)
+                    {
+                        _contexto.Carros.Attach(carro);
+                    }
+                    _contexto.Carros.Remove(carro);
+                    _contexto.SaveChanges();
 
+                    dbTransact.Commit();
+                }
+                catch (Exception)
+                {
+                    dbTransact.Rollback();
+                }
+            }
+        }
         public void Editar(Carro carro)
         {
-            DbEntityEntry dbEntityEntry = _contexto.Entry(carro);
-            if (dbEntityEntry.State == EntityState.Detached)
+            using (var dbTransact = _contexto.Database.BeginTransaction())
             {
-                _contexto.Carros.Attach(carro);
+                try
+                {
+                    DbEntityEntry dbEntityEntry = _contexto.Entry(carro);
+                    if (dbEntityEntry.State == EntityState.Detached)
+                    {
+                        _contexto.Carros.Attach(carro);
+                    }
+                    _contexto.SaveChanges();
+
+                    dbTransact.Commit();
+                }
+                catch (Exception)
+                {
+                    dbTransact.Rollback();
+                }
             }
-            _contexto.SaveChanges();
+
         }
     }
 }

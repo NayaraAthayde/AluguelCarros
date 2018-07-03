@@ -1,6 +1,7 @@
 ﻿using AluguelCarros.Dominio.Entidades;
 using AluguelCarros.Infra.Dados.Contexto;
 using AluguelCarros.Infra.Dados.Repositorios;
+using System;
 using System.Net;
 using System.Web.Mvc;
 
@@ -47,7 +48,18 @@ namespace AluguelCarros.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorio.Adicionar(cliente);
+                using (var dbTransact = _contexto.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _repositorio.Adicionar(cliente);
+                        dbTransact.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        dbTransact.Rollback();
+                    }
+                }                
                 return RedirectToAction("Index");
             }
 
@@ -90,7 +102,19 @@ namespace AluguelCarros.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                _repositorio.Editar(client);
+                using (var dbTransact = _contexto.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _repositorio.Editar(client);
+
+                        dbTransact.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        dbTransact.Rollback();
+                    }
+                }                
                 return RedirectToAction("Index");
             }
             return View(cliente);
@@ -116,8 +140,20 @@ namespace AluguelCarros.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cliente cliente = _repositorio.BuscarPorId(id);
-            _repositorio.Deletar(cliente);
+            using (var dbTransact = _contexto.Database.BeginTransaction())
+            {
+                try
+                {
+                    Cliente cliente = _repositorio.BuscarPorId(id);
+                    _repositorio.Deletar(cliente);
+
+                    dbTransact.Commit();
+                }
+                catch (Exception)
+                {
+                    dbTransact.Rollback();
+                }
+            }
             return RedirectToAction("Index");
         }
     }

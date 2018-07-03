@@ -53,7 +53,18 @@ namespace AluguelCarros.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorio.Adicionar(carro);
+                using (var dbTransact = _contexto.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _repositorio.Adicionar(carro);
+                        dbTransact.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        dbTransact.Rollback();
+                    }
+                }                
                 return RedirectToAction("Index");
             }
 
@@ -90,7 +101,19 @@ namespace AluguelCarros.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                _repositorio.Editar(car);
+                using (var dbTransact = _contexto.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _repositorio.Editar(car);
+                        dbTransact.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        dbTransact.Rollback();
+                    }
+                }
+                
                 return RedirectToAction("Index");
             }
             return View(carro);
@@ -116,8 +139,21 @@ namespace AluguelCarros.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Carro carro = _repositorio.BuscarPorId(id);
-            _repositorio.Deletar(carro);
+            using (var dbTransact = _contexto.Database.BeginTransaction())
+            {
+                try
+                {
+                    Carro carro = _repositorio.BuscarPorId(id);
+                    _repositorio.Deletar(carro);
+                    dbTransact.Commit();
+                }
+                catch (Exception)
+                {
+                    dbTransact.Rollback();
+                }
+            }
+
+            
             return RedirectToAction("Index");
         }
     }
